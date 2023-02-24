@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_index_payroll_accounting_index_payroll_accounting,index_payroll_accounting.index_payroll_accounting,model_index_payroll_accounting_index_payroll_accounting,base.group_user,1,1,1,1
