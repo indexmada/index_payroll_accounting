@@ -1,18 +1,14 @@
 # -*- coding: utf-8 -*-
 
-# from odoo import models, fields, api
+from odoo import models, fields, api
 
+class HrPayslip(models.Model):
+    _inherit="hr.payslip"
 
-# class index_payroll_accounting(models.Model):
-#     _name = 'index_payroll_accounting.index_payroll_accounting'
-#     _description = 'index_payroll_accounting.index_payroll_accounting'
+    # Comptable
+    move_line_ids = fields.Many2many(string="Ecriture comptable",comodel_name="account.move.line", compute="_get_move_line_ids")
 
-#     name = fields.Char()
-#     value = fields.Integer()
-#     value2 = fields.Float(compute="_value_pc", store=True)
-#     description = fields.Text()
-#
-#     @api.depends('value')
-#     def _value_pc(self):
-#         for record in self:
-#             record.value2 = float(record.value) / 100
+    @api.depends('move_id')
+    def _get_move_line_ids(self):
+        for record in self:
+            record.move_line_ids = record.move_id.line_ids
